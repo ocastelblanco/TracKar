@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Seguimiento de Vehículos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+        <script src="phonegap.js"></script>
+        <script src="barcodescanner.js"></script>
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+        <script>
+            $(function(){
+                var salida = '';
+                $('#barcodescanner').live('pageinit',function(event){
+                    window.plugins.barcodeScanner.scan(function(result) {
+                            salida = "Result: " + result.text + "\n" +"Format: " + result.format + "\n" +"Cancelled: " + result.cancelled;
+                            $.mobile.changePage($('#inicio'));
+                            $('#inicio').live('pageinit',function(event){
+                                $('#inicio').children('#salida').html(salida);
+                            });
+                        }, function(error) {
+                            salida = error;
+                            $.mobile.changePage($('#error'));
+                            $('#error').live('pageinit',function(event){
+                                $('#error').children('#salida').html(salida);
+                            });
+                        }
+                    );
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div data-role="page" id="inicio">
+            <div data-role="header">
+        		<h1>Seguimiento de Vehículos</h1>
+        	</div>
+        	<div data-role="content">
+                <p>El resultado es: <span id='salida'></span></p>
+        		<a href="#barcodescanner" data-role="button" data-icon="star">Capturar código de barras</a>
+        	</div>
+        	<div data-role="footer">
+        		<a href="#barcodescanner" data-role="button" data-icon="star" data-iconpos="notext">Capturar</a>
+        	</div>
+        </div>
+        
+        <div data-role="page" id="barcodescanner">
+            <div data-role="header">
+            	<h1>Seguimiento de Vehículos</h1>
+        	</div>
+        	<div data-role="content">	
+        		<a href="#barcodescanner" data-role="button">Capturar código de barras</a>
+        	</div>
+        	<div data-role="footer" class="ui-bar">
+                <a href="#inicio" data-role="button" data-icon="home" data-iconpos="notext">Volver</a>
+        	</div>
+        </div>
+        
+        <div data-role="page" id="error">
+            <div data-role="header">
+                <h1>Seguimiento de Vehículos</h1>
+        	</div>
+        	<div data-role="content">	
+        		<p>Ha sucedido un error: <span id='salida'></span></p>
+        	</div>
+        	<div data-role="footer" class="ui-bar">
+                <a href="#inicio" data-role="button" data-icon="home" data-iconpos="notext">Volver</a>
+        	</div>
+        </div>
+        
+    </body>
+</html>

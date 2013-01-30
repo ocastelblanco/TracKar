@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.olivercastelblanco.segvehi"
+        versionCode="1" 
+        version   = "0.0.1">
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Seguimiento de vehículos</name>
+
+    <description>
+        Aplicación móvil para el seguimiento de vehículos dentro de una organización en tiempo real.
+    </description>
+
+    <author href="https://github.com/ocastelblanco/" email="ocastelblanco@gmail.com">
+        Oliver Castelblanco Martínez
+    </author>
+
+    <gap:plugin name="BarcodeScanner" />
+
+</widget>
