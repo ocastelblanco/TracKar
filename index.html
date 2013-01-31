@@ -15,15 +15,11 @@
                     window.plugins.barcodeScanner.scan(function(result) {
                             salida = "Result: " + result.text + "\n" +"Format: " + result.format + "\n" +"Cancelled: " + result.cancelled;
                             $.mobile.changePage($('#inicio'));
-                            $('#inicio').live('pageinit',function(event){
-                                $('#inicio').children('#salida').html(salida);
-                            });
+                            $('#inicio').children('#salida').html(salida);
                         }, function(error) {
                             salida = error;
                             $.mobile.changePage($('#error'));
-                            $('#error').live('pageinit',function(event){
-                                $('#error').children('#salida').html(salida);
-                            });
+                            $('#error').children('#salida').html(salida);
                         }
                     );
                 });
@@ -33,37 +29,37 @@
     <body>
         <div data-role="page" id="inicio">
             <div data-role="header">
-        		<h1>Seguimiento de Vehículos</h1>
+        		<h1>Seguimiento</h1>
         	</div>
         	<div data-role="content">
                 <p>El resultado es: <span id='salida'></span></p>
         		<a href="#barcodescanner" data-role="button" data-icon="star">Capturar código de barras</a>
         	</div>
-        	<div data-role="footer">
+        	<div data-role="footer" class="ui-bar" data-position="fixed">
         		<a href="#barcodescanner" data-role="button" data-icon="star" data-iconpos="notext">Capturar</a>
         	</div>
         </div>
         
         <div data-role="page" id="barcodescanner">
             <div data-role="header">
-            	<h1>Seguimiento de Vehículos</h1>
+            	<h1>Seguimiento</h1>
         	</div>
         	<div data-role="content">	
         		<a href="#barcodescanner" data-role="button">Capturar código de barras</a>
         	</div>
-        	<div data-role="footer" class="ui-bar">
+        	<div data-role="footer" class="ui-bar" data-position="fixed">
                 <a href="#inicio" data-role="button" data-icon="home" data-iconpos="notext">Volver</a>
         	</div>
         </div>
         
         <div data-role="page" id="error">
             <div data-role="header">
-                <h1>Seguimiento de Vehículos</h1>
+                <h1>Seguimiento</h1>
         	</div>
         	<div data-role="content">	
         		<p>Ha sucedido un error: <span id='salida'></span></p>
         	</div>
-        	<div data-role="footer" class="ui-bar">
+        	<div data-role="footer" class="ui-bar" data-position="fixed">
                 <a href="#inicio" data-role="button" data-icon="home" data-iconpos="notext">Volver</a>
         	</div>
         </div>
