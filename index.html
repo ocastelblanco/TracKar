@@ -10,20 +10,6 @@
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
         <script>
             $(function(){
-                /*
-                var codigo = '';
-                $('#barcodescanner').live('pageinit',function(event){
-                    window.plugins.barcodeScanner.scan(function(result) {
-                            codigo = "Result: " + result.text + "\n" +"Format: " + result.format + "\n" +"Cancelled: " + result.cancelled;
-                            $('#inicio #salida').html(codigo);
-                            $.mobile.changePage($('#inicio'));
-                        }, function(error) {
-                            $('#error #salida').html(error);
-                            $.mobile.changePage($('#error'));
-                        }
-                    );
-                });
-                */
                 $('a').attr('href', '#registrar').bind('tap', function(){
                     window.plugins.barcodeScanner.scan(function(resultado) {
                             $('#info #salida').html(resultado.text);
