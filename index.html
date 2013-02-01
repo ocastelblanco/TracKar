@@ -10,16 +10,15 @@
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
         <script>
             $(function(){
-                var salida = '';
+                var codigo = '';
                 $('#barcodescanner').live('pageinit',function(event){
                     window.plugins.barcodeScanner.scan(function(result) {
-                            salida = "Result: " + result.text + "\n" +"Format: " + result.format + "\n" +"Cancelled: " + result.cancelled;
+                            codigo = "Result: " + result.text + "\n" +"Format: " + result.format + "\n" +"Cancelled: " + result.cancelled;
+                            $('#inicio #salida').html(codigo);
                             $.mobile.changePage($('#inicio'));
-                            $('#inicio').children('#salida').html(salida);
                         }, function(error) {
-                            salida = error;
+                            $('#error #salida').html(error);
                             $.mobile.changePage($('#error'));
-                            $('#error').children('#salida').html(salida);
                         }
                     );
                 });
@@ -32,7 +31,7 @@
         		<h1>Seguimiento</h1>
         	</div>
         	<div data-role="content">
-                <p>El resultado es: <span id='salida'></span></p>
+                <p>El resultado es: <span id='salida'>Vacío</span></p>
         		<a href="#barcodescanner" data-role="button" data-icon="star">Capturar código de barras</a>
         	</div>
         	<div data-role="footer" class="ui-bar" data-position="fixed">
