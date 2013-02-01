@@ -10,6 +10,7 @@
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
         <script>
             $(function(){
+                /*
                 var codigo = '';
                 $('#barcodescanner').live('pageinit',function(event){
                     window.plugins.barcodeScanner.scan(function(result) {
@@ -22,39 +23,88 @@
                         }
                     );
                 });
+                */
+                $('a').attr('href', '#registrar').bind('tap', function(){
+                    window.plugins.barcodeScanner.scan(function(resultado) {
+                            $('#info #salida').html(resultado.text);
+                            $.mobile.changePage($('#info'));
+                        }, function(error) {
+                            $('#error #salida').html(error);
+                            $.mobile.changePage($('#error'));
+                        }
+                    );
+                });
             });
         </script>
     </head>
     <body>
         <div data-role="page" id="inicio">
-            <div data-role="header">
-        		<h1>Seguimiento</h1>
-        	</div>
-        	<div data-role="content">
-                <p>El resultado es: <span id='salida'>Vacío</span></p>
-        		<a href="#barcodescanner" data-role="button" data-icon="star">Capturar código de barras</a>
-        	</div>
-        	<div data-role="footer" class="ui-bar" data-position="fixed">
-        		<a href="#barcodescanner" data-role="button" data-icon="star" data-iconpos="notext">Capturar</a>
-        	</div>
+            <div data-theme="d" data-role="header" data-position="fixed">
+                <h1>TracKar</h1>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-divider-theme="a" data-inset="false">
+                    <li data-role="list-divider" role="heading">Registros recientes</li>
+                    <li data-theme="d">
+                        <a href="#carro" data-transition="slide">Chevrolet Aveo GT</a>
+                    </li>
+                    <li data-theme="d">
+                        <a href="#carro" data-transition="slide">Chevrolet Spark</a>
+                    </li>
+                    <li data-theme="d">
+                        <a href="#carro" data-transition="slide"> Chevrolet Captiva Sport</a>
+                    </li>
+                    <li data-role="list-divider" role="heading">Vehículos +60</li>
+                    <li data-theme="d">
+                        <a href="#carro" data-transition="slide">Renault Sandero</a>
+                    </li>
+                    <li data-theme="d">
+                        <a href="#carro" data-transition="slide">Renault Duster</a>
+                    </li>
+                </ul>
+            </div>
+            <div data-theme="d" data-role="footer" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#modificar" data-theme="d" data-icon="gear">Modificar</a></li>
+                        <li><a href="#registrar" data-theme="d" data-icon="star">Registrar</a></li>
+                        <li><a href="#listar" data-theme="d" data-icon="grid">Listar</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         
-        <div data-role="page" id="barcodescanner">
-            <div data-role="header">
-            	<h1>Seguimiento</h1>
-        	</div>
-        	<div data-role="content">	
-        		<a href="#barcodescanner" data-role="button">Capturar código de barras</a>
-        	</div>
-        	<div data-role="footer" class="ui-bar" data-position="fixed">
-                <a href="#inicio" data-role="button" data-icon="home" data-iconpos="notext">Volver</a>
-        	</div>
+        <div data-role="page" id="info">
+            <div data-theme="d" data-role="header" data-position="fixed">
+                <a data-role="button" data-inline="true" data-rel="back" data-theme="d"
+                href="#inicio" data-icon="home" data-iconpos="left" class="ui-btn-left">
+                    Inicio
+                </a>
+                <h1>TracKar</h1>
+            </div>
+            <div data-role="content">
+                <p>El resultado de la lectura es:</p>
+                <p id="salida">Vacío</p>
+            </div>
+            <div data-theme="d" data-role="footer" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#modificar" data-theme="d" data-icon="gear">Modificar</a></li>
+                        <li><a href="#registrar" data-theme="d" data-icon="star">Registrar</a></li>
+                        <li><a href="#listar" data-theme="d" data-icon="grid">Listar</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         
         <div data-role="page" id="error">
-            <div data-role="header">
-                <h1>Seguimiento</h1>
-        	</div>
+            <div data-theme="d" data-role="header" data-position="fixed">
+                <a data-role="button" data-inline="true" data-rel="back" data-theme="d"
+                href="#inicio" data-icon="home" data-iconpos="left" class="ui-btn-left">
+                    Inicio
+                </a>
+                <h1>TracKar</h1>
+            </div>
         	<div data-role="content">	
         		<p>Ha sucedido un error: <span id='salida'></span></p>
         	</div>
